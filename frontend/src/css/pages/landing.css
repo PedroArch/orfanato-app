@@ -1,0 +1,80 @@
+#page-landing {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-landing .page-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  max-height: 680px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  background: url('../../img/criancas.svg') no-repeat 80% center;
+}
+
+#page-landing .page-wrapper main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#page-landing .page-wrapper main h1 {
+  width: 358px;
+  font-size: 76px;
+  font-weight: 900;
+  line-height: 78px;
+}
+
+#page-landing .page-wrapper main p {
+  width: 358px;
+  margin-top: 48px;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+#page-landing .page-wrapper .location {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  font-size: 24px;
+  line-height: 34px;
+
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+#page-landing .page-wrapper .location strong {
+  font-weight: 800;
+}
+
+#page-landing .page-wrapper .enter-app {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 80px;
+  height: 80px;
+  background-color: #ffd666;
+  border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+#page-landing .page-wrapper .enter-app:hover {
+  background-color: #96efff;
+}
