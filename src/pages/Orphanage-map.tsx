@@ -9,9 +9,28 @@ import markerImg from '../img/logo-marker.svg';
 
 import '../css/pages/orphanages-maps.css';
 import 'leaflet/dist/leaflet.css';
+
 import happyMapIcon from '../utils/mapIcon';
+import api from '../services/api';
+
+interface Orphanage {
+  name: string;
+  longitude: number;
+  latitude: number;
+  id: number;
+}
 
 function OrphanagesMap() {
+  const [orphanages, setOrphanages] = React.useState<Orphanage[]>([]);
+
+  React.useEffect(() => {
+    api.get('orphanages').then((res) => {
+      setOrphanages(res.data);
+    });
+  }, []);
+
+  console.log(orphanages);
+
   return (
     <div id="page-map">
       <aside>
@@ -33,20 +52,27 @@ function OrphanagesMap() {
         <TileLayer
           url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
         />
-
-        <Marker position={[-30.0642248, -51.2108403]} icon={happyMapIcon}>
-          <Popup
-            closeButton={false}
-            minWidth={240}
-            maxWidth={240}
-            className="map-popup"
-          >
-            Lar das Meninas
-            <Link to="/orphanages/1">
-              <FiArrowRight size={32} color="#FFF" />
-            </Link>
-          </Popup>
-        </Marker>
+        {orphanages.map((orphanage) => {
+          return (
+            <Marker
+              position={[orphanage.latitude, orphanage.longitude]}
+              icon={happyMapIcon}
+              key={orphanage.id}
+            >
+              <Popup
+                closeButton={false}
+                minWidth={240}
+                maxWidth={240}
+                className="map-popup"
+              >
+                {orphanage.name}
+                <Link to={`/orphanages/${orphanage.id}`}>
+                  <FiArrowRight size={32} color="#FFF" />
+                </Link>
+              </Popup>
+            </Marker>
+          );
+        })}
       </Map>
       <Link to="/orphanages/create" className="create-orphanage">
         <FiPlus size={32} color="#fff" />
