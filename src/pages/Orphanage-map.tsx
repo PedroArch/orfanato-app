@@ -29,6 +29,12 @@ function OrphanagesMap() {
     });
   }, []);
 
+  React.useEffect(() => {
+    api.get('orphanages').then((res) => {
+      setOrphanages(res.data);
+    });
+  }, [orphanages]);
+
   console.log(orphanages);
 
   return (
